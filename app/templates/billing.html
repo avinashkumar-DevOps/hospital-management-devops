@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Billing</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="main">
+
+<h2>Create Patient Bill</h2>
+
+<form action="/billing/create" method="POST">
+
+<label>Patient ID</label>
+<input type="number" name="patient_id">
+
+<label>Total Amount</label>
+<input type="number" name="total_amount">
+
+<button type="submit">Generate Bill</button>
+
+</form>
+
+<hr>
+
+<h3>Billing Records</h3>
+
+<table>
+
+<tr>
+<th>Bill ID</th>
+<th>Patient ID</th>
+<th>Total Amount</th>
+</tr>
+
+{% for bill in bills %}
+
+<tr>
+<td>{{ bill.id }}</td>
+<td>{{ bill.patient_id }}</td>
+<td>{{ bill.total_amount }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

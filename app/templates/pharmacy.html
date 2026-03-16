@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Pharmacy</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<h2>Medicine Inventory</h2>
+
+<form method="POST" action="/medicine/add">
+
+<input type="text" name="name" placeholder="Medicine Name">
+<input type="number" name="quantity" placeholder="Quantity">
+<input type="number" name="price" placeholder="Price">
+
+<button type="submit">Add Medicine</button>
+
+</form>
+
+<table>
+
+<tr>
+<th>Medicine</th>
+<th>Stock</th>
+<th>Price</th>
+</tr>
+
+<tr>
+<td>Paracetamol</td>
+<td>200</td>
+<td>5</td>
+</tr>
+
+</table>
+
+</body>
+</html>

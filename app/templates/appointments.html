@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Appointments</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="main">
+
+<h2>Book Appointment</h2>
+
+<form action="/appointments/book" method="POST">
+
+<label>Select Patient</label>
+<select name="patient_id">
+
+{% for patient in patients %}
+
+<option value="{{ patient.id }}">
+{{ patient.name }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Select Doctor</label>
+<select name="doctor_id">
+
+{% for doctor in doctors %}
+
+<option value="{{ doctor.id }}">
+{{ doctor.name }} - {{ doctor.specialization }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Appointment Date</label>
+<input type="date" name="date">
+
+<button type="submit">Book Appointment</button>
+
+</form>
+
+<hr>
+
+<h3>Appointments List</h3>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Patient ID</th>
+<th>Doctor ID</th>
+<th>Date</th>
+</tr>
+
+{% for appointment in appointments %}
+
+<tr>
+<td>{{ appointment.id }}</td>
+<td>{{ appointment.patient_id }}</td>
+<td>{{ appointment.doctor_id }}</td>
+<td>{{ appointment.date }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
