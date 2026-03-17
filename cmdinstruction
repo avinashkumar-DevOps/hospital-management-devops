@@ -41,7 +41,7 @@ git clone https://github.com/yourusername/hospital-management-devops.git
 
 cd hospital-management-devops
 🐳 Step 5 — Build and Start Containers
-docker-compose up -d --build
+docker compose up -d --build
 
 Verify containers:
 
