@@ -187,3 +187,29 @@ Deploy to EC2
 Nginx Reverse Proxy
         ↓
 Hospital Web Application
+📊 Production Architecture
+Developer
+   │
+   ▼
+GitHub
+   │
+   ▼
+Jenkins CI/CD
+   │
+   ├── SonarQube
+   ├── Trivy Scan
+   │
+   ▼
+Docker Build
+   │
+   ▼
+AWS EC2
+   │
+   ▼
+Nginx
+   │
+   ▼
+Flask Application
+   │
+   ▼
+MySQL Database
