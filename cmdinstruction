@@ -130,16 +130,16 @@ http://EC2_PUBLIC_IP:9000
 
 Install:
 
-sudo apt install wget apt-transport-https gnupg -y
-
-Add repo:
-
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-
-Install:
-
-sudo apt update
-sudo apt install trivy -y
+🔹1 — Add Trivy Repository
+sudo apt install wget apt-transport-https gnupg lsb-release -y
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo gpg --dearmor -o /usr/share/keyrings/trivy.gpg
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/trivy.list
+🔹2 — Update Packages
+      sudo apt update
+🔹3 — Install Trivy
+     sudo apt install trivy -y
+🔍 4 — Verify
+     trivy --version
 
 Test:
 
