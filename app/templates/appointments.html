@@ -2,6 +2,112 @@
 <html>
 
 <head>
+    <title>Appointments</title>
+
+    <!-- ✅ Correct CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- ✅ Sidebar -->
+<div class="sidebar">
+    <h2>🏥 HMS</h2>
+
+    <a href="/">Dashboard</a>
+    <a href="/patients">Patients</a>
+    <a href="/doctors">Doctors</a>
+    <a href="/appointments">Appointments</a>
+    <a href="/pharmacy">Pharmacy</a>
+    <a href="/billing">Billing</a>
+</div>
+
+<div class="main">
+
+    <header>
+        <h1>Appointment Management</h1>
+    </header>
+
+    <!-- ✅ Booking Form -->
+    <div class="card">
+        <h2>Book Appointment</h2>
+
+        <form action="/appointments/book" method="POST">
+
+            <label>Select Patient</label>
+            <select name="patient_id" required>
+                {% if patients %}
+                    {% for patient in patients %}
+                        <option value="{{ patient.id }}">
+                            {{ patient.name }}
+                        </option>
+                    {% endfor %}
+                {% else %}
+                    <option disabled>No patients available</option>
+                {% endif %}
+            </select>
+
+            <label>Select Doctor</label>
+            <select name="doctor_id" required>
+                {% if doctors %}
+                    {% for doctor in doctors %}
+                        <option value="{{ doctor.id }}">
+                            {{ doctor.name }} - {{ doctor.specialization }}
+                        </option>
+                    {% endfor %}
+                {% else %}
+                    <option disabled>No doctors available</option>
+                {% endif %}
+            </select>
+
+            <label>Appointment Date</label>
+            <input type="date" name="date" required>
+
+            <button type="submit">Book Appointment</button>
+
+        </form>
+    </div>
+
+    <!-- ✅ Appointments Table -->
+    <div class="table-section">
+
+        <h3>Appointments List</h3>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Patient ID</th>
+                <th>Doctor ID</th>
+                <th>Date</th>
+            </tr>
+
+            {% if appointments %}
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.id }}</td>
+                    <td>{{ appointment.patient_id }}</td>
+                    <td>{{ appointment.doctor_id }}</td>
+                    <td>{{ appointment.date }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No appointments found</td>
+                </tr>
+            {% endif %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+
+<head>
 <title>Appointments</title>
 <link rel="stylesheet" href="/static/css/style.css">
 </head>
