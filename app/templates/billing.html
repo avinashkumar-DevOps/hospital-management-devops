@@ -2,6 +2,87 @@
 <html>
 
 <head>
+    <title>Billing</title>
+
+    <!-- ✅ Correct CSS loading -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- ✅ Sidebar (consistent UI) -->
+<div class="sidebar">
+    <h2>🏥 HMS</h2>
+
+    <a href="/">Dashboard</a>
+    <a href="/patients">Patients</a>
+    <a href="/doctors">Doctors</a>
+    <a href="/appointments">Appointments</a>
+    <a href="/pharmacy">Pharmacy</a>
+    <a href="/billing">Billing</a>
+</div>
+
+<div class="main">
+
+    <header>
+        <h1>Billing Management</h1>
+    </header>
+
+    <!-- ✅ Billing Form -->
+    <div class="card">
+        <h2>Create Patient Bill</h2>
+
+        <form action="/billing/create" method="POST">
+
+            <label>Patient ID</label>
+            <input type="number" name="patient_id" required>
+
+            <label>Total Amount</label>
+            <input type="number" name="total_amount" required>
+
+            <button type="submit">Generate Bill</button>
+
+        </form>
+    </div>
+
+    <!-- ✅ Billing Table -->
+    <div class="table-section">
+
+        <h3>Billing Records</h3>
+
+        <table>
+
+            <tr>
+                <th>Bill ID</th>
+                <th>Patient ID</th>
+                <th>Total Amount</th>
+            </tr>
+
+            {% if bills %}
+                {% for bill in bills %}
+                <tr>
+                    <td>{{ bill.id }}</td>
+                    <td>{{ bill.patient_id }}</td>
+                    <td>{{ bill.total_amount }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">No billing records found</td>
+                </tr>
+            {% endif %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+
+<head>
 <title>Billing</title>
 <link rel="stylesheet" href="/static/css/style.css">
 </head>
