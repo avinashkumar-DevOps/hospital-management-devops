@@ -7,7 +7,7 @@ stages {
 stage('Clone Repo') {
 
 steps {
-git 'https://github.com/avinashkumar-DevOps/hospital-management-devops.git'
+git branch: 'main', url: 'https://github.com/avinashkumar-DevOps/hospital-management-devops.git'
 }
 
 }
