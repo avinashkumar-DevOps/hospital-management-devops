@@ -2,39 +2,84 @@
 <html>
 
 <head>
-<title>Pharmacy</title>
-<link rel="stylesheet" href="/static/css/style.css">
+    <title>Pharmacy</title>
+
+    <!-- ✅ Correct CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-<h2>Medicine Inventory</h2>
+<!-- ✅ Sidebar -->
+<div class="sidebar">
+    <h2>🏥 HMS</h2>
 
-<form method="POST" action="/medicine/add">
+    <a href="/">Dashboard</a>
+    <a href="/patients">Patients</a>
+    <a href="/doctors">Doctors</a>
+    <a href="/appointments">Appointments</a>
+    <a href="/pharmacy">Pharmacy</a>
+    <a href="/billing">Billing</a>
+</div>
 
-<input type="text" name="name" placeholder="Medicine Name">
-<input type="number" name="quantity" placeholder="Quantity">
-<input type="number" name="price" placeholder="Price">
+<div class="main">
 
-<button type="submit">Add Medicine</button>
+    <header>
+        <h1>Pharmacy Management</h1>
+    </header>
 
-</form>
+    <!-- ✅ Add Medicine Form -->
+    <div class="card">
+        <h2>Add Medicine</h2>
 
-<table>
+        <form method="POST" action="/medicine/add">
 
-<tr>
-<th>Medicine</th>
-<th>Stock</th>
-<th>Price</th>
-</tr>
+            <label>Medicine Name</label>
+            <input type="text" name="name" required>
 
-<tr>
-<td>Paracetamol</td>
-<td>200</td>
-<td>5</td>
-</tr>
+            <label>Quantity</label>
+            <input type="number" name="quantity" required>
 
-</table>
+            <label>Price</label>
+            <input type="number" name="price" required>
+
+            <button type="submit">Add Medicine</button>
+
+        </form>
+    </div>
+
+    <!-- ✅ Medicine Table -->
+    <div class="table-section">
+
+        <h3>Medicine Inventory</h3>
+
+        <table>
+
+            <tr>
+                <th>Medicine</th>
+                <th>Stock</th>
+                <th>Price</th>
+            </tr>
+
+            {% if medicines %}
+                {% for med in medicines %}
+                <tr>
+                    <td>{{ med.name }}</td>
+                    <td>{{ med.quantity }}</td>
+                    <td>{{ med.price }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">No medicines available</td>
+                </tr>
+            {% endif %}
+
+        </table>
+
+    </div>
+
+</div>
 
 </body>
 </html>
