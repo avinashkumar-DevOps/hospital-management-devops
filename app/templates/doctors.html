@@ -2,53 +2,79 @@
 <html>
 
 <head>
-<title>Doctors</title>
-<link rel="stylesheet" href="/static/css/style.css">
+    <title>Doctors</title>
+
+    <!-- ✅ Correct CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
+<!-- ✅ Sidebar -->
+<div class="sidebar">
+    <h2>🏥 HMS</h2>
+
+    <a href="/">Dashboard</a>
+    <a href="/patients">Patients</a>
+    <a href="/doctors">Doctors</a>
+    <a href="/appointments">Appointments</a>
+    <a href="/pharmacy">Pharmacy</a>
+    <a href="/billing">Billing</a>
+</div>
+
 <div class="main">
 
-<h2>Doctor Management</h2>
+    <header>
+        <h1>Doctor Management</h1>
+    </header>
 
-<h3>Add Doctor</h3>
+    <!-- ✅ Add Doctor Form -->
+    <div class="card">
+        <h3>Add Doctor</h3>
 
-<form action="/doctors/add" method="POST">
+        <form action="/doctors/add" method="POST">
 
-<label>Doctor Name</label>
-<input type="text" name="name" required>
+            <label>Doctor Name</label>
+            <input type="text" name="name" required>
 
-<label>Specialization</label>
-<input type="text" name="specialization" required>
+            <label>Specialization</label>
+            <input type="text" name="specialization" required>
 
-<button type="submit">Add Doctor</button>
+            <button type="submit">Add Doctor</button>
 
-</form>
+        </form>
+    </div>
 
-<hr>
+    <!-- ✅ Doctor Table -->
+    <div class="table-section">
 
-<h3>Doctor List</h3>
+        <h3>Doctor List</h3>
 
-<table>
+        <table>
 
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Specialization</th>
-</tr>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Specialization</th>
+            </tr>
 
-{% for doctor in doctors %}
+            {% if doctors %}
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor.id }}</td>
+                    <td>{{ doctor.name }}</td>
+                    <td>{{ doctor.specialization }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">No doctors available</td>
+                </tr>
+            {% endif %}
 
-<tr>
-<td>{{ doctor.id }}</td>
-<td>{{ doctor.name }}</td>
-<td>{{ doctor.specialization }}</td>
-</tr>
+        </table>
 
-{% endfor %}
-
-</table>
+    </div>
 
 </div>
 
